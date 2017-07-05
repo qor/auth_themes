@@ -9,5 +9,5 @@ import (
 func New(auth *auth.Auth) {
 	auth.RegisterProvider(database.New(nil))
 
-	auth.Render.RegisterViewPath("github.com/qor/auth_themes/clean/views")
+	auth.Render.PrependViewPath("github.com/qor/auth_themes/clean/views")
 }

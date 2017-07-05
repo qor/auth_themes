@@ -1,1 +1,30 @@
-Login Page
+<div class="container">
+  <div class="row">
+    <div class="column column-12">
+      <div class="auth login">
+        <form action="{{.Result.AuthURL "database/login"}}" method="POST">
+          <ul class="auth-form">
+            <li>
+              <label for="login">{{ t "login.email" }}</label>
+              <input type="text" class="form-control" name="login" placeholder="{{ t "auth.login" "Login"}}" value="">
+            </li>
+
+            <li {{if .showRecover}}class="forget-password"{{end}}>
+              <label for="password">{{ t "login.password" }}</label>
+              <input type="password" class="form-control" name="password" placeholder="{{ t "auth.password" "Password"}}">
+            </li>
+
+            <li>
+              <button type="submit" class="button button__primary">{{ t "auth.login" "Login" }}</button>
+            </li>
+
+            <li>
+              {{ t "login.Need an Account?" "Need an Account?" }}
+              <a href="{{.Result.AuthURL "register"}}">{{ t "auth.register" "Register" }}</a>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
