@@ -1,1 +1,30 @@
-Register Page
+<div class="container">
+  <div class="row">
+    <div class="column column-12">
+      <div class="auth register">
+        <form action="{{.Result.AuthURL "database/register"}}" method="POST">
+          <ul class="auth-form">
+            <li>
+              <label for="login">{{ t "login.email" }}</label>
+              <input name="login" type="text" placeholder="{{ t "auth.login" "Login"}}" />
+            </li>
+
+            <li>
+              <label for="password">{{ t "login.password" }}</label>
+              <input type="password" class="form-control" name="password" placeholder="{{ t "auth.password" "Password"}}">
+            </li>
+
+            <li>
+              <label for="confirm_password">{{ t "login.password_confirm"  "Confirm Password"}}</label>
+              <input name="confirm_password" type="password" />
+            </li>
+
+            <li>
+              <button type="submit" class="button button__primary">{{ t "auth.register" "Register" }}</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
