@@ -2,6 +2,15 @@
   <div class="row">
     <div class="column column-12">
       <div class="auth register">
+        {{$flashes := .Flashes}}
+        {{if $flashes}}
+          <ul class="errors">
+            {{range $flash := $flashes}}
+              <li>{{$flash.Message}}</li>
+            {{end}}
+          </ul>
+        {{end}}
+
         <form action="{{.Result.AuthURL "database/register"}}" method="POST">
           <ul class="auth-form">
             <li>
