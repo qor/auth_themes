@@ -15,7 +15,7 @@
           <ul class="auth-form">
             <li>
               <label for="login">{{ t "login.email" }}</label>
-              <input type="text" class="form-control" name="login" placeholder="{{ t "auth.login" "Login"}}" value="">
+              <input type="text" class="form-control" name="login" placeholder="{{ t "auth.login" "Login"}}" value="{{.Result.FormValue "login"}}">
             </li>
 
             <li>
