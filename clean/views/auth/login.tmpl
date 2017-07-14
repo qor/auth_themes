@@ -2,7 +2,7 @@
   <div class="row">
     <div class="column column-12">
       <div class="auth login">
-        {{$flashes := .Result.Flashes}}
+        {{$flashes := .Flashes}}
         {{if $flashes}}
           <ul class="errors">
             {{range $flash := $flashes}}
@@ -11,11 +11,11 @@
           </ul>
         {{end}}
 
-        <form action="{{.Result.AuthURL "database/login"}}" method="POST">
+        <form action="{{.AuthURL "database/login"}}" method="POST">
           <ul class="auth-form">
             <li>
               <label for="login">{{ t "login.email" }}</label>
-              <input type="text" class="form-control" name="login" placeholder="{{ t "auth.login" "Login"}}" value="{{.Result.FormValue "login"}}">
+              <input type="text" class="form-control" name="login" placeholder="{{ t "auth.login" "Login"}}" value="{{.FormValue "login"}}">
             </li>
 
             <li>
@@ -29,7 +29,7 @@
 
             <li>
               {{ t "login.Need an Account?" "Need an Account?" }}
-              <a href="{{.Result.AuthURL "register"}}">{{ t "auth.register" "Register" }}</a>
+              <a href="{{.AuthURL "register"}}">{{ t "auth.register" "Register" }}</a>
             </li>
           </ul>
         </form>
