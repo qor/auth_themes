@@ -28,6 +28,10 @@
             </li>
 
             <li>
+              <a href="{{.AuthURL "database/password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
+            </li>
+
+            <li>
               {{ t "login.Need an Account?" "Need an Account?" }}
               <a href="{{.AuthURL "register"}}">{{ t "auth.register" "Register" }}</a>
             </li>
