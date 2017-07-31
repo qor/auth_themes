@@ -5,7 +5,7 @@ import (
 
 	"github.com/qor/auth"
 	"github.com/qor/auth/claims"
-	"github.com/qor/auth/database"
+	"github.com/qor/auth/providers/password"
 )
 
 // ErrPasswordConfirmationNotMatch password confirmation not match error
@@ -20,7 +20,8 @@ func New(config *auth.Config) *auth.Auth {
 
 	Auth := auth.New(config)
 
-	Auth.RegisterProvider(database.New(&database.Config{
+	Auth.RegisterProvider(password.New(&password.Config{
+		Confirmable: true,
 		RegisterHandler: func(context *auth.Context) (*claims.Claims, error) {
 			context.Request.ParseForm()
 
@@ -28,7 +29,7 @@ func New(config *auth.Config) *auth.Auth {
 				return nil, ErrPasswordConfirmationNotMatch
 			}
 
-			return database.DefaultRegisterHandler(context)
+			return password.DefaultRegisterHandler(context)
 		},
 	}))
 

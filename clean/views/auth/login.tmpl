@@ -11,7 +11,7 @@
           </ul>
         {{end}}
 
-        <form action="{{.AuthURL "database/login"}}" method="POST">
+        <form action="{{.AuthURL "password/login"}}" method="POST">
           <ul class="auth-form">
             <li>
               <label for="login">{{ t "login.email" }}</label>
@@ -28,7 +28,7 @@
             </li>
 
             <li>
-              <a href="{{.AuthURL "database/password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
+              <a href="{{.AuthURL "password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
             </li>
 
             <li>
