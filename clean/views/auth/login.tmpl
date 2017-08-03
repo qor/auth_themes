@@ -1,38 +1,36 @@
+<link rel="stylesheet" media="all" href="/dist/qor_auth.css">
 <div class="container qor-auth">
-  <div class="grid">
+  <div class="qor-auth-box">
+    {{$flashes := .Flashes}}
+    {{if $flashes}}
+      <ul class="errors">
+        {{range $flash := $flashes}}
+          <li>{{$flash.Message}}</li>
+        {{end}}
+      </ul>
+    {{end}}
 
-    <div class="grid__col is-12 qor-login">
-      {{$flashes := .Flashes}}
-      {{if $flashes}}
-        <ul class="errors">
-          {{range $flash := $flashes}}
-            <li>{{$flash.Message}}</li>
-          {{end}}
-        </ul>
-      {{end}}
+    <h1>{{ t "login.Sign in" "Sign in" }}</h1>
+    <a class="signup-link" href="{{.AuthURL "register"}}">{{ t "login.Don't have an account? Click here to sign up." "Don't have an account? Click here to sign up." }}</a>
 
-      <h1>{{ t "login.Sign in" "Sign in" }}</h1>
-      <a class="signup-link" href="{{.AuthURL "register"}}">{{ t "login.Don't have an account? Click here to sign up." "Don't have an account? Click here to sign up." }}</a>
+    <form action="{{.AuthURL "password/login"}}" method="POST">
+      <ul class="auth-form">
+        <li>
+          <label for="login">{{ t "login.email" }}</label>
+          <input type="email" class="form-control" id="login" name="login" placeholder="{{ t "auth.email address" "email address"}}" value="{{.FormValue "login"}}">
+        </li>
 
-      <form action="{{.AuthURL "password/login"}}" method="POST">
-        <ul class="auth-form">
-          <li>
-            <label for="login">{{ t "login.email" }}</label>
-            <input type="email" class="form-control" id="login" name="login" placeholder="{{ t "auth.login" "Login"}}" value="{{.FormValue "login"}}">
-          </li>
+        <li>
+          <label for="password">{{ t "login.password" }}</label>
+          <a class="forgot-password" href="{{.AuthURL "password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
+          <input type="password" class="form-control" id="password" name="password" placeholder="{{ t "auth.password" "Password"}}">
+        </li>
 
-          <li>
-            <label for="password">{{ t "login.password" }}</label>
-            <a class="forgot-password" href="{{.AuthURL "password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
-            <input type="password" class="form-control" id="password" name="password" placeholder="{{ t "auth.password" "Password"}}">
-          </li>
+        <li>
+          <button type="submit" class="button button__primary">{{ t "auth.Sign in" "Sign in" }}</button>
+        </li>
+      </ul>
+    </form>
 
-          <li>
-            <button type="submit" class="button button__primary">{{ t "auth.Sign in" "Sign in" }}</button>
-          </li>
-        </ul>
-      </form>
-
-    </div>
   </div>
 </div>
