@@ -16,8 +16,8 @@
     <form action="{{.AuthURL "password/login"}}" method="POST">
       <ul class="auth-form">
         <li>
-          <label for="login">{{ t "login.email" }}</label>
-          <input type="email" class="form-control" id="login" name="login" placeholder="{{ t "auth.email address" "email address"}}" value="{{.FormValue "login"}}">
+          <label for="email">{{ t "login.email" }}</label>
+          <input type="email" id="email" name="login" placeholder="{{ t "auth.email address" "email address"}}" value="{{.FormValue "login"}}">
         </li>
 
         <li>
