@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="row">
-    <div class="column column-12">
-      <div class="auth login">
+<div class="container qor-auth">
+  <div class="grid">
+
+      <div class="grid__col is-12 qor-login">
         {{$flashes := .Flashes}}
         {{if $flashes}}
           <ul class="errors">
@@ -11,33 +11,29 @@
           </ul>
         {{end}}
 
+        <h1>{{ t "login.Sign in" "Sign in" }}</h1>
+        <a class="signup-link" href="{{.AuthURL "register"}}">{{ t "login.Don't have an account? Click here to sign up." "Don't have an account? Click here to sign up." }}</a>
+
         <form action="{{.AuthURL "password/login"}}" method="POST">
           <ul class="auth-form">
             <li>
               <label for="login">{{ t "login.email" }}</label>
-              <input type="text" class="form-control" name="login" placeholder="{{ t "auth.login" "Login"}}" value="{{.FormValue "login"}}">
+              <input type="email" class="form-control" id="login" name="login" placeholder="{{ t "auth.login" "Login"}}" value="{{.FormValue "login"}}">
             </li>
 
             <li>
               <label for="password">{{ t "login.password" }}</label>
-              <input type="password" class="form-control" name="password" placeholder="{{ t "auth.password" "Password"}}">
+              <a class="forgot-password" href="{{.AuthURL "password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
+              <input type="password" class="form-control" id="password" name="password" placeholder="{{ t "auth.password" "Password"}}">
             </li>
 
             <li>
-              <button type="submit" class="button button__primary">{{ t "auth.login" "Login" }}</button>
-            </li>
-
-            <li>
-              <a href="{{.AuthURL "password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
-            </li>
-
-            <li>
-              {{ t "login.Need an Account?" "Need an Account?" }}
-              <a href="{{.AuthURL "register"}}">{{ t "auth.register" "Register" }}</a>
+              <button type="submit" class="button button__primary">{{ t "auth.Sign in" "Sign in" }}</button>
             </li>
           </ul>
         </form>
+
       </div>
+
     </div>
-  </div>
 </div>

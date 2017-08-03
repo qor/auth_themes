@@ -1,39 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div class="column column-12">
-      <div class="auth register">
-        {{$flashes := .Flashes}}
-        {{if $flashes}}
-          <ul class="errors">
-            {{range $flash := $flashes}}
-              <li>{{$flash.Message}}</li>
-            {{end}}
-          </ul>
-        {{end}}
+<div class="container qor-auth">
+  <div class="grid">
 
-        <form action="{{.AuthURL "password/register"}}" method="POST">
-          <ul class="auth-form">
-            <li>
-              <label for="login">{{ t "login.email" }}</label>
-              <input name="login" type="text" placeholder="{{ t "auth.login" "Login"}}" value="{{.FormValue "login"}}"/>
-            </li>
+    <div class="grid__col is-12 qor-login">
+      {{$flashes := .Flashes}}
+      {{if $flashes}}
+        <ul class="errors">
+          {{range $flash := $flashes}}
+            <li>{{$flash.Message}}</li>
+          {{end}}
+        </ul>
+      {{end}}
 
-            <li>
-              <label for="password">{{ t "login.password" }}</label>
-              <input type="password" class="form-control" name="password" placeholder="{{ t "auth.password" "Password"}}">
-            </li>
+      <h1>{{ t "auth.Sign Up" "Sign Up" }}</h1>
+      <a class="signup-link" href="{{.AuthURL "login"}}">
+        {{ t "auth.Already registered? Sign in" "Already registered? Sign in" }}
+      </a>
 
-            <li>
-              <label for="confirm_password">{{ t "login.password_confirm"  "Confirm Password"}}</label>
-              <input name="confirm_password" type="password" />
-            </li>
+      <form action="{{.AuthURL "password/register"}}" method="POST">
+        <ul class="auth-form">
+          <li>
+            <label for="login">{{ t "login.email" }}</label>
+            <input name="login" type="text" placeholder="{{ t "auth.login" "Login"}}" value="{{.FormValue "login"}}"/>
+          </li>
 
-            <li>
-              <button type="submit" class="button button__primary">{{ t "auth.register" "Register" }}</button>
-            </li>
-          </ul>
-        </form>
-      </div>
+          <li>
+            <label for="password">{{ t "login.password" }}</label>
+            <input type="password" class="form-control" name="password" placeholder="{{ t "auth.password" "Password"}}">
+          </li>
+
+          <li>
+            <label for="confirm_password">{{ t "login.password_confirm"  "Confirm Password"}}</label>
+            <input name="confirm_password" type="password" placeholder="{{ t "auth.confirm password" "Confirm Password"}}" />
+          </li>
+
+          <li>
+            <button type="submit" class="button button__primary">{{ t "auth.Sign Up" "Sign Up" }}</button>
+          </li>
+        </ul>
+      </form>
     </div>
   </div>
 </div>

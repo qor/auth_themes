@@ -1,0 +1,32 @@
+<div class="container qor-auth qor-auth-light">
+  <div class="grid">
+    <div class="grid__col is-12 qor-login">
+
+      {{$flashes := .Flashes}}
+      {{if $flashes}}
+        <ul>
+          {{range $flash := $flashes}}
+            <li>{{$flash.Message}}</li>
+          {{end}}
+        </ul>
+      {{end}}
+
+      <h1>{{ t "auth.Reset your password" "Reset your password" }}</h1>
+      <form action="{{.AuthURL "password/update"}}" method="POST">
+        <input type="hidden" name="reset_password_token" value="{{reset_password_token}}">
+
+        <ul class="auth-form">
+          <li>
+            <label for="email">New Password:</label>
+            <input type="password" name="new_password">
+          </li>
+          <li>
+            <button type="submit" class="button button__primary">{{ t "auth.Reset password" "Reset password" }}</button>
+          </li>
+        </ul>
+      </form>
+
+    </div>
+  </div>
+</div>
+
