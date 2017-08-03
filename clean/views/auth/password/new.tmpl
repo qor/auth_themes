@@ -16,14 +16,14 @@
       <form action="{{.AuthURL "password/recover"}}" method="POST">
         <ul class="auth-form">
           <li>
-            <label for="email">Email</label>
-            <input name="email" id="email" type="email" placeholder="{{t "auth. e.g., youremail@gmail.com" " e.g., youremail@gmail.com"}}" />
+            <label for="email">{{ t "auth.Email" "Email" }}</label>
+            <input name="email" id="email" type="email" placeholder="{{t "auth. e.g., youremail@example.org" " e.g., youremail@example.org"}}" />
           </li>
+
           <li>
-            <button type="submit" class="button button__primary">Continue</button>
+            <button type="submit" class="button button__primary">{{ t "auth.Continue" "Continue" }}</button>
           </li>
       </form>
-
     </div>
   </div>
 </div>

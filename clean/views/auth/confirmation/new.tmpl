@@ -1,5 +1,5 @@
 <div style="margin:auto; text-align: center;">
-  <h2>Resend Confirmation</h2>
+  <h2>{{ t "auth.Resend Confirmation" "Resend Confirmation" }}</h2>
 
   {{$flashes := .Flashes}}
   {{if $flashes}}
@@ -12,12 +12,12 @@
 
   <div>
     <form action="{{.AuthURL "password/confirmation/send"}}" method="POST">
-      Email:  <input name="email">
+      {{ t "auth.Email" "Email" }}:  <input name="email">
       <input type="submit">
     </form>
   </div>
 
   <div>
-    <a href="{{.AuthURL "login"}}">Sign in</a>
+    <a href="{{.AuthURL "login"}}">{{ t "auth.Sign in" "Sign in" }}</a>
   </div>
 </div>
