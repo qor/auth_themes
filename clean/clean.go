@@ -2,10 +2,16 @@ package clean
 
 import (
 	"errors"
+	"html/template"
+	"net/http"
 
 	"github.com/qor/auth"
 	"github.com/qor/auth/claims"
 	"github.com/qor/auth/providers/password"
+	"github.com/qor/i18n"
+	"github.com/qor/qor"
+	"github.com/qor/qor/utils"
+	"github.com/qor/render"
 )
 
 // ErrPasswordConfirmationNotMatch password confirmation not match error
@@ -17,6 +23,18 @@ func New(config *auth.Config) *auth.Auth {
 		config = &auth.Config{}
 	}
 	config.ViewPaths = append(config.ViewPaths, "github.com/qor/auth_themes/clean/views")
+
+	if config.Render == nil {
+		config.Render = render.New(&render.Config{
+			FuncMapMaker: func(render *render.Render, req *http.Request, w http.ResponseWriter) template.FuncMap {
+				return template.FuncMap{
+					"t": func(key string, args ...interface{}) template.HTML {
+						return i18n.New().T(utils.GetLocale(&qor.Context{Request: req}), key, args...)
+					},
+				}
+			},
+		})
+	}
 
 	Auth := auth.New(config)
 
