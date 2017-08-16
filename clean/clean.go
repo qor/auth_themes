@@ -56,5 +56,9 @@ func New(config *auth.Config) *auth.Auth {
 		},
 	}))
 
+	if Auth.Config.DB != nil {
+		// Migrate Auth Identity model
+		Auth.Config.DB.AutoMigrate(Auth.Config.AuthIdentityModel)
+	}
 	return Auth
 }
