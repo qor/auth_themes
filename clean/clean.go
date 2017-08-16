@@ -2,6 +2,7 @@ package clean
 
 import (
 	"errors"
+	"fmt"
 	"html/template"
 	"net/http"
 
@@ -23,6 +24,10 @@ func New(config *auth.Config) *auth.Auth {
 		config = &auth.Config{}
 	}
 	config.ViewPaths = append(config.ViewPaths, "github.com/qor/auth_themes/clean/views")
+
+	if config.DB == nil {
+		fmt.Print("Please configure *gorm.DB for Auth theme clean")
+	}
 
 	if config.Render == nil {
 		config.Render = render.New(&render.Config{
