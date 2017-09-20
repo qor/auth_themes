@@ -14,34 +14,49 @@
     <h1>{{ t "login.Sign in" "Sign in" }}</h1>
     <a class="signup-link" href="{{.AuthURL "register"}}">{{ t "login.Don't have an account? Click here to sign up." "Don't have an account? Click here to sign up." }}</a>
 
-    <form action="{{.AuthURL "password/login"}}" method="POST">
-      <ul class="auth-form">
-        <li>
-          <label for="email">{{ t "login.email" }}</label>
-          <input type="email" id="email" name="login" placeholder="{{ t "auth.email address" "email address"}}" value="{{.FormValue "login"}}">
-        </li>
+    {{if .Auth.GetProvider "password"}}
+      <form action="{{.AuthURL "password/login"}}" method="POST">
+        <ul class="auth-form">
+          <li>
+            <label for="email">{{ t "login.email" }}</label>
+            <input type="email" id="email" name="login" placeholder="{{ t "auth.email address" "email address"}}" value="{{.FormValue "login"}}">
+          </li>
 
-        <li>
-          <label for="password">{{ t "login.password" }}</label>
-          <a class="forgot-password" href="{{.AuthURL "password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
-          <input type="password" class="form-control" id="password" name="password" placeholder="{{ t "auth.password" "Password"}}">
-        </li>
+          <li>
+            <label for="password">{{ t "login.password" }}</label>
+            <a class="forgot-password" href="{{.AuthURL "password/new"}}">{{ t "login.forgot password?" "Forgot Password?" }}</a>
+            <input type="password" class="form-control" id="password" name="password" placeholder="{{ t "auth.password" "Password"}}">
+          </li>
 
-        <li>
-          <button type="submit" class="button button__primary">{{ t "auth.Sign in" "Sign in" }}</button>
-        </li>
-      </ul>
-    </form>
+          <li>
+            <button type="submit" class="button button__primary">{{ t "auth.Sign in" "Sign in" }}</button>
+          </li>
+        </ul>
+      </form>
+    {{end}}
 
-    <div class="line">
-      <span>{{ t "auth.OR SIGN IN WITH" "OR SIGN IN WITH" }}</span>
-    </div>
+    {{if (and (gt (len .Auth.GetProviders) 1) (.Auth.GetProvider "password"))}}
+      <div class="line">
+        <span>{{ t "auth.OR SIGN IN WITH" "OR SIGN IN WITH" }}</span>
+      </div>
+    {{end}}
+
     <div class="qor-auth-social-login">
-      <a href="#" class="qor-auth-facebook" title="{{ t "auth.Sign in with facebook" "Sign in with facebook" }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-      <a href="#" class="qor-auth-github" title="{{ t "auth.Sign in with github" "Sign in with github" }}"><i class="fa fa-github" aria-hidden="true"></i></a>
-      <a href="#" class="qor-auth-google" title="{{ t "auth.Sign in with google" "Sign in with google" }}"><i class="fa fa-google" aria-hidden="true"></i></a>
+      {{if .Auth.GetProvider "facebook"}}
+        <a href="#" class="qor-auth-facebook" title="{{ t "auth.Sign in with facebook" "Sign in with facebook" }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+      {{end}}
+
+      {{if .Auth.GetProvider "twitter"}}
+        <a href="#" class="qor-auth-twitter" title="{{ t "auth.Sign in with twitter" "Sign in with twitter" }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+      {{end}}
+
+      {{if .Auth.GetProvider "github"}}
+        <a href="#" class="qor-auth-github" title="{{ t "auth.Sign in with github" "Sign in with github" }}"><i class="fa fa-github" aria-hidden="true"></i></a>
+      {{end}}
+
+      {{if .Auth.GetProvider "google"}}
+        <a href="#" class="qor-auth-google" title="{{ t "auth.Sign in with google" "Sign in with google" }}"><i class="fa fa-google" aria-hidden="true"></i></a>
+      {{end}}
     </div>
-
-
   </div>
 </div>
