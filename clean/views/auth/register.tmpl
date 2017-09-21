@@ -10,31 +10,31 @@
       </ul>
     {{end}}
 
-    <h1>{{ t "auth.Sign Up" "Sign Up" }}</h1>
+    <h1>{{ t "auth.sign_up" }}</h1>
     <a class="signup-link" href="{{.AuthURL "login"}}">
-      {{ t "auth.Already registered? Sign in" "Already registered? Sign in" }}
+      {{t "auth.links.sign_in"}}
     </a>
 
     {{if .Auth.GetProvider "password"}}
       <form action="{{.AuthURL "password/register"}}" method="POST">
         <ul class="auth-form">
           <li>
-            <label for="login">{{ t "login.email" }}</label>
-            <input name="login" type="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" placeholder="{{ t "auth.email address (required)" "email address (required)"}}" value="{{.FormValue "login"}}"/>
+            <label for="login">{{t "auth.form.email"}}</label>
+            <input name="login" type="email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" placeholder="{{t "auth.form.email_placeholder"}}" value="{{.FormValue "login"}}"/>
           </li>
 
           <li>
-            <label for="password">{{ t "login.password" }}</label>
-            <input type="password" required class="form-control" name="password" placeholder="{{ t "auth.password (required)" "Password (required)"}}">
+            <label for="password">{{t "auth.form.password"}}</label>
+            <input type="password" required class="form-control" name="password" placeholder="{{t "auth.form.password_placeholder"}}">
           </li>
 
           <li>
-            <label for="confirm_password">{{ t "login.password_confirm"  "Confirm Password"}}</label>
-            <input name="confirm_password" required type="password" placeholder="{{ t "auth.confirm password (required)" "Confirm Password (required)"}}" />
+            <label for="confirm_password">{{t "auth.form.password_confirm"}}</label>
+            <input name="confirm_password" required type="password" placeholder="{{t "auth.form.password_confirm_placeholder"}}" />
           </li>
 
           <li>
-            <button type="submit" class="button button__primary">{{ t "auth.Sign Up" "Sign Up" }}</button>
+            <button type="submit" class="button button__primary">{{ t "auth.form.sign_up" }}</button>
           </li>
         </ul>
       </form>
@@ -42,25 +42,25 @@
 
     {{if (and (gt (len .Auth.GetProviders) 1) (.Auth.GetProvider "password"))}}
       <div class="line">
-        <span>{{ t "auth.OR SIGN IN WITH" "OR SIGN IN WITH" }}</span>
+        <span>{{ t "auth.or_sign_in_with" }}</span>
       </div>
     {{end}}
 
     <div class="qor-auth-social-login">
       {{if .Auth.GetProvider "facebook"}}
-        <a href="#" class="qor-auth-facebook" title="{{ t "auth.Sign in with facebook" "Sign in with facebook" }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#" class="qor-auth-facebook" title="{{t "auth.links.sign_in_with" "facebook"}}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
       {{end}}
 
       {{if .Auth.GetProvider "twitter"}}
-        <a href="#" class="qor-auth-twitter" title="{{ t "auth.Sign in with twitter" "Sign in with twitter" }}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="#" class="qor-auth-twitter" title="{{t "auth.links.sign_in_with" "twitter"}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
       {{end}}
 
       {{if .Auth.GetProvider "github"}}
-        <a href="#" class="qor-auth-github" title="{{ t "auth.Sign in with github" "Sign in with github" }}"><i class="fa fa-github" aria-hidden="true"></i></a>
+        <a href="#" class="qor-auth-github" title="{{t "auth.links.sign_in_with" "github"}}"><i class="fa fa-github" aria-hidden="true"></i></a>
       {{end}}
 
       {{if .Auth.GetProvider "google"}}
-        <a href="#" class="qor-auth-google" title="{{ t "auth.Sign in with google" "Sign in with google" }}"><i class="fa fa-google" aria-hidden="true"></i></a>
+        <a href="#" class="qor-auth-google" title="{{t "auth.links.sign_in_with" "google"}}"><i class="fa fa-google" aria-hidden="true"></i></a>
       {{end}}
   </div>
 </div>
