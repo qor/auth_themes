@@ -4,12 +4,17 @@ import (
 	"errors"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/qor/auth"
 	"github.com/qor/auth/claims"
 	"github.com/qor/auth/providers/password"
 	"github.com/qor/i18n"
+	"github.com/qor/i18n/backends/yaml"
 	"github.com/qor/qor"
 	"github.com/qor/qor/utils"
 	"github.com/qor/render"
@@ -30,11 +35,25 @@ func New(config *auth.Config) *auth.Auth {
 	}
 
 	if config.Render == nil {
+		yamlBackend := yaml.New()
+		I18n := i18n.New(yamlBackend)
+		for _, gopath := range append([]string{filepath.Join(utils.AppRoot, "vendor")}, strings.Split(os.Getenv("GOPATH"), ":")...) {
+			filePath := filepath.Join(gopath, "src", "github.com/qor/auth_themes/clean/locales/en-US.yml")
+			if content, err := ioutil.ReadFile(filePath); err == nil {
+				translations, _ := yamlBackend.LoadYAMLContent(content)
+				for _, translation := range translations {
+					I18n.AddTranslation(translation)
+				}
+				break
+			}
+		}
+
 		config.Render = render.New(&render.Config{
 			FuncMapMaker: func(render *render.Render, req *http.Request, w http.ResponseWriter) template.FuncMap {
 				return template.FuncMap{
 					"t": func(key string, args ...interface{}) template.HTML {
-						return i18n.New().T(utils.GetLocale(&qor.Context{Request: req}), key, args...)
+						fmt.Println(key, args)
+						return I18n.T(utils.GetLocale(&qor.Context{Request: req}), key, args...)
 					},
 				}
 			},
