@@ -52,7 +52,6 @@ func New(config *auth.Config) *auth.Auth {
 			FuncMapMaker: func(render *render.Render, req *http.Request, w http.ResponseWriter) template.FuncMap {
 				return template.FuncMap{
 					"t": func(key string, args ...interface{}) template.HTML {
-						fmt.Println(key, args)
 						return I18n.T(utils.GetLocale(&qor.Context{Request: req}), key, args...)
 					},
 				}
