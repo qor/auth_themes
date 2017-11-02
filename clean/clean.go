@@ -6,9 +6,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
-	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/qor/auth"
 	"github.com/qor/auth/claims"
@@ -37,7 +35,7 @@ func New(config *auth.Config) *auth.Auth {
 	if config.Render == nil {
 		yamlBackend := yaml.New()
 		I18n := i18n.New(yamlBackend)
-		for _, gopath := range append([]string{filepath.Join(utils.AppRoot, "vendor")}, strings.Split(os.Getenv("GOPATH"), ":")...) {
+		for _, gopath := range append([]string{filepath.Join(utils.AppRoot, "vendor")}, utils.GOPATH()...) {
 			filePath := filepath.Join(gopath, "src", "github.com/qor/auth_themes/clean/locales/en-US.yml")
 			if content, err := ioutil.ReadFile(filePath); err == nil {
 				translations, _ := yamlBackend.LoadYAMLContent(content)
