@@ -10,12 +10,12 @@
     {{end}}
 
     <h1>{{ t "auth.sign_up" }}</h1>
-    <a class="signup-link" href="{{.AuthURL " login "}}">
+    <a class="signup-link" href="{{.AuthURL "login"}}">
       {{t "auth.links.sign_in"}}
     </a>
 
     {{if .Auth.GetProvider "password"}}
-    <form action="{{.AuthURL " password/register "}}" method="POST">
+    <form action="{{.AuthURL "password/register" }}" method="POST">
       <ul class="auth-form">
         <li>
           <label for="login">{{t "auth.form.email"}}</label>
