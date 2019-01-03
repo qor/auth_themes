@@ -39,39 +39,5 @@
     </form>
     {{end}} 
     
-    {{if (and (gt (len .Auth.GetProviders) 1) (.Auth.GetProvider "password"))}}
-      <div class="line">
-        <span>{{ t "auth.or_sign_in_with" }}</span>
-      </div>
-      
-
-      <div class="qor-auth-social-login">
-        {{if .Auth.GetProvider "facebook"}}
-        <a href="#" class="qor-auth-facebook" title="{{t " auth.links.sign_in_with " "facebook "}}">
-          <i class="fa fa-facebook" aria-hidden="true"></i>
-        </a>
-        {{end}} 
-        
-        {{if .Auth.GetProvider "twitter"}}
-        <a href="#" class="qor-auth-twitter" title="{{t " auth.links.sign_in_with " "twitter "}}">
-          <i class="fa fa-twitter" aria-hidden="true"></i>
-        </a>
-        {{end}} 
-        
-        {{if .Auth.GetProvider "github"}}
-        <a href="#" class="qor-auth-github" title="{{t " auth.links.sign_in_with " "github "}}">
-          <i class="fa fa-github" aria-hidden="true"></i>
-        </a>
-        {{end}} 
-        
-        {{if .Auth.GetProvider "google"}}
-        <a href="#" class="qor-auth-google" title="{{t " auth.links.sign_in_with " "google "}}">
-          <i class="fa fa-google" aria-hidden="true"></i>
-        </a>
-        {{end}}
-
-      {{end}}
-
-    </div>
   </div>
 </div>
