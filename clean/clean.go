@@ -43,6 +43,10 @@ func New(config *auth.Config) *auth.Auth {
 					I18n.AddTranslation(translation)
 				}
 				break
+			} else if err != nil {
+				err = fmt.Errorf("Can't open locale file: %s", err.Error())
+				fmt.Println(err.Error())
+				break
 			}
 		}
 
